@@ -12,6 +12,8 @@ echo fullstamp: "%fullstamp%"
 mkdir data\dbbackup\%fullstamp%
 
 move core\migrations data\dbbackup\%fullstamp%\migrations\core
+move product\migrations data\dbbackup\%fullstamp%\migrations\product
+move program\migrations data\dbbackup\%fullstamp%\migrations\program
 
 move data\db.sqlite3 data\dbbackup\%fullstamp%
 

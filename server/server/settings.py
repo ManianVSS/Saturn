@@ -190,6 +190,8 @@ INSTALLED_APPS = [
 
     # Project-Apps modules    
     'core',
+    'product',
+    'program',
 
     # Keeping django cleanup at the end
     'django_cleanup.apps.CleanupConfig',

@@ -1,7 +1,7 @@
 # Production Settings
 
 # Logger Configuration
-LOG_FILE: logs/server.log
+LOG_FILE: logs/saturn.log
 LOG_LEVEL: INFO
 
 # Set DEBUG to True to allow static file serving
@@ -36,8 +36,8 @@ TIME_ZONE: 'Asia/Kolkata'
 # Database configuration
 DATABASE:
   ENGINE: django.db.backends.postgresql_psycopg2
-  NAME: server
-  USER: serveradmin
-  PASSWORD: serveradmin@123
+  NAME: saturn
+  USER: saturnadmin
+  PASSWORD: saturnadmin@123
   HOST: localhost
   PORT: 5432

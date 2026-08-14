@@ -49,6 +49,8 @@ urlpatterns = [
 
     # Modules
     path('api/', include('core.urls')),
+    path('product/', include('product.urls')),
+    path('program/', include('program.urls')),
 
     # Swagger
     # path('swagger/', schema_view, name='docs'),
@@ -61,7 +63,7 @@ urlpatterns = [
             TemplateView.as_view(template_name='errors/forbidden.html')),
 
     re_path(
-        '(^(?!(data|admin|swagger|api)).*$)',
+        '(^(?!(data|admin|swagger|api|product|program)).*$)',
         TemplateView.as_view(template_name='index.html')),
 ]
 

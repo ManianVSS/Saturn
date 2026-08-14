@@ -13,6 +13,10 @@ from django.db import IntegrityError
 #from <app_name>.serializers import serializer_map as <app_name>_serializer_map
 from core.models import model_name_map as core_model_name_map
 from core.serializers import serializer_map as core_serializer_map
+from product.models import model_name_map as product_model_name_map
+from product.serializers import serializer_map as product_serializer_map
+from program.models import model_name_map as program_model_name_map
+from program.serializers import serializer_map as program_serializer_map
 
 
 model_name_map = {
@@ -21,12 +25,16 @@ model_name_map = {
     # For each App add
     #'<app_name>': <app_name>_model_name_map,
     'core': core_model_name_map,    
+    'product': product_model_name_map,
+    'program': program_model_name_map,
 }
 
 serializer_map = {}
 # For each App add
 # serializer_map.update(<app_name>_serializer_map)
 serializer_map.update(core_serializer_map)
+serializer_map.update(product_serializer_map)
+serializer_map.update(program_serializer_map)
 
 
 logger = logging.getLogger(__name__)
