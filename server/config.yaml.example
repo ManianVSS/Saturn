@@ -1,0 +1,43 @@
+# Production Settings
+
+# Logger Configuration
+LOG_FILE: logs/server.log
+LOG_LEVEL: INFO
+
+# Set DEBUG to True to allow static file serving
+DEBUG: True
+
+# Domain settings
+FQDN: '*'
+ALLOWED_HOSTS:
+  - '*'
+
+# Static and data file config
+TEMPLATE_DIRS: [ 'build', 'templates', 'node_modules' ]
+DATA_MOUNT_DIR: .
+FORCE_SCRIPT_NAME: ''
+STATIC_FILES: [ 'static', 'build/static', 'build/assets', ]
+STATIC_URL: '/static/'
+MEDIA_URL: /data/
+
+# File upload settings
+# FILE_UPLOAD_MAX_MEMORY_SIZE: 104857600
+# FILE_UPLOAD_TEMP_DIR= data/_temp
+# SESSION_FILE_PATH= data/_session
+# FILE_UPLOAD_DIRECTORY_PERMISSIONS: 0o755
+# FILE_UPLOAD_PERMISSIONS: 0o644
+
+# Language and timezone settings
+LANGUAGE_CODE: en-us
+USE_I18N: False
+USE_TZ: True
+TIME_ZONE: 'Asia/Kolkata'
+
+# Database configuration
+DATABASE:
+  ENGINE: django.db.backends.postgresql_psycopg2
+  NAME: server
+  USER: serveradmin
+  PASSWORD: serveradmin@123
+  HOST: localhost
+  PORT: 5432

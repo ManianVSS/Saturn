@@ -1,0 +1,7 @@
+#!/bin/bash
+sudo -u postgres psql -c "create database server"
+sudo -u postgres psql -c "create user serveradmin with encrypted password 'serveradmin@123'"
+sudo -u postgres psql -c "grant all privileges on database server to serveradmin"
+sudo -u postgres psql -c "grant postgres to serveradmin"
+
+./migrate.sh

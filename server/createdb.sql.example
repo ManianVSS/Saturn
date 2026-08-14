@@ -1,0 +1,3 @@
+create database server;
+create user serveradmin with encrypted password 'serveradmin@123';
+grant all privileges on database server to serveradmin;
