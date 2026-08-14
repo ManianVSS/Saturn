@@ -28,12 +28,11 @@ from . import settings
 # TODO: Handle routes in a combined way instead of constructing individually at each app
 
 schema_view = get_schema_view(
-    openapi.Info(
-        logo="Saturn.png",
+    openapi.Info(        
         title="Saturn API",
         default_version='v1',
         description="Test description",
-        terms_of_service="https://github.com/manianvss/djangorest-base-template?tab=BSD-3-Clause-1-ov-file#readme",
+        terms_of_service="https://github.com/manianvss/Saturn?tab=BSD-3-Clause-1-ov-file#readme",
         contact=openapi.Contact(email="manianvss@hotmail.com"),
         license=openapi.License(name="BSD-3-Clause license"),
     ),
