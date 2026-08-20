@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.contrib.admin.filters import RelatedOnlyFieldListFilter
 
 from core.admin import CustomModelAdmin, org_model_list_filter_base
-from .models import ApplicationType, Application, Release, ArtifactType, Artifact, DocumentType, Document
+from .models import ApplicationType, Application, Release, ArtifactType, Artifact, DocumentType, Document, \
+    Attachment, Tag, ProgramIncrement, Epic, Feature, Sprint, Story
 
 
 @admin.register(ApplicationType)
@@ -63,3 +64,67 @@ class DocumentAdmin(CustomModelAdmin):
     )
     search_fields = ['name', 'link', 'file', ]
     display_order = 7
+
+
+@admin.register(Attachment)
+class AttachmentAdmin(CustomModelAdmin):
+    search_fields = ['name', ' file', ]
+    list_filter = org_model_list_filter_base + ( )
+
+
+@admin.register(Tag)
+class TagAdmin(CustomModelAdmin):
+    list_filter = org_model_list_filter_base + ( )
+    search_fields = ['name', 'summary', 'description', ]
+
+
+@admin.register(ProgramIncrement)
+class ProgramIncrementAdmin(CustomModelAdmin):
+    list_filter = org_model_list_filter_base + (
+        'start_date',
+        'end_date',
+    )
+    search_fields = ['name', 'summary', 'description', ]
+
+
+@admin.register(Epic)
+class EpicAdmin(CustomModelAdmin):
+    list_filter = org_model_list_filter_base + (        
+        ('pi', RelatedOnlyFieldListFilter),
+        'status',
+        'weight',
+    )
+    search_fields = ['name', 'summary', 'description', ]
+
+
+@admin.register(Feature)
+class FeatureAdmin(CustomModelAdmin):
+    list_filter = org_model_list_filter_base + (        
+        ('pi', RelatedOnlyFieldListFilter),
+        ('epic', RelatedOnlyFieldListFilter),
+        'status',
+        'weight',
+    )
+    search_fields = ['name', 'summary', 'description', ]
+
+
+@admin.register(Sprint)
+class SprintAdmin(CustomModelAdmin):
+    list_filter = org_model_list_filter_base + (        
+        ('pi', RelatedOnlyFieldListFilter),
+        'start_date',
+        'end_date',
+    )
+    search_fields = ['name', 'start_date', 'end_date', ]
+
+
+@admin.register(Story)
+class StoryAdmin(CustomModelAdmin):
+    list_filter = org_model_list_filter_base + (        
+        ('sprint', RelatedOnlyFieldListFilter),
+        ('feature', RelatedOnlyFieldListFilter),
+        'status',
+        'weight',
+        'rank',
+    )
+    search_fields = ['name', 'summary', 'description', ]

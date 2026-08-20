@@ -2,7 +2,8 @@ from django.urls import include, path
 from rest_framework import routers
 
 from .views import ProgramApplicationTypeViewSet, ProgramApplicationViewSet, ProgramReleaseViewSet, ArtifactTypeViewSet, ArtifactViewSet, \
-    DocumentTypeViewSet, DocumentViewSet
+                   DocumentTypeViewSet, DocumentViewSet, ProgramAttachmentViewSet, ProgramTagViewSet, ProgramIncrementViewSet, EpicViewSet,\
+                   ProgramFeatureViewSet, SprintViewSet, StoryViewSet
 
 router = routers.DefaultRouter()
 
@@ -13,6 +14,14 @@ router.register(r'artifact_types', ArtifactTypeViewSet)
 router.register(r'artifacts', ArtifactViewSet)
 router.register(r'document_types', DocumentTypeViewSet)
 router.register(r'document', DocumentViewSet)
+
+router.register(r'attachments', ProgramAttachmentViewSet)
+router.register(r'tags', ProgramTagViewSet)
+router.register(r'program_increments', ProgramIncrementViewSet)
+router.register(r'epics', EpicViewSet)
+router.register(r'features', ProgramFeatureViewSet)
+router.register(r'sprints', SprintViewSet)
+router.register(r'stories', StoryViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

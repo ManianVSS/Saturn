@@ -1,6 +1,7 @@
 from core.models import org_model_base_fields
 from core.serializers import ServerModelSerializer
-from .models import ApplicationType, Application, Release, ArtifactType, Artifact, DocumentType, Document
+from .models import ApplicationType, Application, Release, ArtifactType, Artifact, DocumentType, Document, \
+                    Attachment, Tag, ProgramIncrement, Story, Sprint, Feature, Epic
 
 
 class ApplicationTypeSerializer(ServerModelSerializer):
@@ -46,6 +47,51 @@ class DocumentSerializer(ServerModelSerializer):
         fields = org_model_base_fields + ['release', 'document_type', 'name', 'link', 'file', 'checksum', ]
 
 
+
+class ProgramAttachmentSerializer(ServerModelSerializer):
+    class Meta:
+        model = Attachment
+        fields = org_model_base_fields + ['name', 'file', ]
+
+
+class ProgramTagSerializer(ServerModelSerializer):
+    class Meta:
+        model = Tag
+        fields = org_model_base_fields + ['name', 'summary', 'description', ]
+
+
+class ProgramIncrementSerializer(ServerModelSerializer):
+    class Meta:
+        model = ProgramIncrement
+        fields = org_model_base_fields + ['name', 'summary', 'description', 'start_date', 'end_date', ]
+
+
+class EpicSerializer(ServerModelSerializer):
+    class Meta:
+        model = Epic
+        fields = org_model_base_fields + ['pi', 'name', 'status', 'summary', 'description', 'weight', 'attachments', ]
+
+
+class ProgramFeatureSerializer(ServerModelSerializer):
+    class Meta:
+        model = Feature
+        fields = org_model_base_fields + ['pi', 'epic', 'name', 'status', 'summary', 'description', 'weight', 'attachments', ]
+
+
+class SprintSerializer(ServerModelSerializer):
+    class Meta:
+        model = Sprint
+        fields = org_model_base_fields + ['pi', 'name', 'start_date', 'end_date', ]
+
+
+class StorySerializer(ServerModelSerializer):
+    class Meta:
+        model = Story
+        fields = org_model_base_fields + ['sprint', 'feature', 'name', 'status', 'summary', 'description', 'weight',
+                                           'attachments', 'rank', ]
+
+
+
 serializer_map = {
     ApplicationType: ApplicationTypeSerializer,
     Application: ApplicationSerializer,
@@ -54,4 +100,12 @@ serializer_map = {
     Artifact: ArtifactSerializer,
     DocumentType: DocumentTypeSerializer,
     Document: DocumentSerializer,
+
+    Attachment: ProgramAttachmentSerializer,
+    Tag: ProgramTagSerializer,
+    ProgramIncrement: ProgramIncrementSerializer,
+    Epic: EpicSerializer,
+    Feature: ProgramFeatureSerializer,
+    Sprint: SprintSerializer,
+    Story: StorySerializer,
 }
