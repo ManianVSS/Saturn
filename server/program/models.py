@@ -68,8 +68,7 @@ class Document(NotMutablePublishOrgModel):
 
 class Attachment(OrgModel):
     name = models.CharField(max_length=256)
-    file = models.FileField(storage=CustomFileSystemStorage, upload_to=MEDIA_BASE_NAME, blank=False,
-                            null=False)
+    file = models.FileField(storage=CustomFileSystemStorage, upload_to='program', blank=False, null=False)
 
 
 class Tag(OrgModel):
@@ -80,6 +79,7 @@ class Tag(OrgModel):
 
 class ProgramStatus(models.TextChoices):
     DRAFT = 'DRAFT', _('Draft'),
+    BACKLOG = 'BACKLOG', _('Backlog'),
     IN_PROGRESS = 'IN_PROGRESS', _('In progress'),    
     COMPLETED = 'COMPLETED', _('Completed'),
     ACCEPTED = 'ACCEPTED', _('Accepted'),
@@ -94,7 +94,7 @@ class ProgramIncrement(OrgModel):
 
 
 class Epic(OrgModel):
-    pi = models.ForeignKey(ProgramIncrement, null=True, on_delete=models.SET_NULL, related_name='epics')
+    pi = models.ForeignKey(ProgramIncrement, null=True, blank=True, on_delete=models.SET_NULL, related_name='epics')
     name = models.CharField(max_length=256)
     status = models.CharField(max_length=20, choices=ProgramStatus.choices, default=ProgramStatus.DRAFT)
     summary = models.CharField(max_length=256, null=True, blank=True)
@@ -106,7 +106,7 @@ class Epic(OrgModel):
 class Feature(OrgModel):
     pi = models.ForeignKey(ProgramIncrement, null=True, blank=True, on_delete=models.SET_NULL,
                                related_name='features')
-    epic = models.ForeignKey(Epic, null=True, on_delete=models.SET_NULL, related_name='features')
+    epic = models.ForeignKey(Epic, null=True, blank=True, on_delete=models.SET_NULL, related_name='features')
     name = models.CharField(max_length=256)
     status = models.CharField(max_length=20, choices=ProgramStatus.choices, default=ProgramStatus.DRAFT)
     summary = models.CharField(max_length=256, null=True, blank=True)
@@ -131,7 +131,7 @@ class Story(OrgModel):
         verbose_name_plural = "stories"
 
     sprint = models.ForeignKey(Sprint, on_delete=models.SET_NULL, null=True, blank=True)
-    feature = models.ForeignKey(Feature, null=True, on_delete=models.SET_NULL, related_name='stories')
+    feature = models.ForeignKey(Feature, null=True, blank=True, on_delete=models.SET_NULL, related_name='stories')
     name = models.CharField(max_length=256, )
     status = models.CharField(max_length=20, choices=ProgramStatus.choices, default=ProgramStatus.DRAFT)
     summary = models.CharField(max_length=256, null=True, blank=True)

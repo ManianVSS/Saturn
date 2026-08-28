@@ -85,6 +85,7 @@ class ProgramIncrementAdmin(CustomModelAdmin):
         'end_date',
     )
     search_fields = ['name', 'summary', 'description', ]
+    display_order = 8
 
 
 @admin.register(Epic)
@@ -95,6 +96,7 @@ class EpicAdmin(CustomModelAdmin):
         'weight',
     )
     search_fields = ['name', 'summary', 'description', ]
+    display_order = 9
 
 
 @admin.register(Feature)
@@ -106,6 +108,7 @@ class FeatureAdmin(CustomModelAdmin):
         'weight',
     )
     search_fields = ['name', 'summary', 'description', ]
+    display_order = 10
 
 
 @admin.register(Sprint)
@@ -116,6 +119,7 @@ class SprintAdmin(CustomModelAdmin):
         'end_date',
     )
     search_fields = ['name', 'start_date', 'end_date', ]
+    display_order = 11
 
 
 @admin.register(Story)
@@ -128,3 +132,4 @@ class StoryAdmin(CustomModelAdmin):
         'rank',
     )
     search_fields = ['name', 'summary', 'description', ]
+    display_order = 12

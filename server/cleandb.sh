@@ -8,6 +8,7 @@ mv core/migrations data/dbbackup/$timestamp/migrations/core
 mv data/db.sqlite3 data/dbbackup/$timestamp
 mv product/migrations data/dbbackup/$timestamp/migrations/product
 mv program/migrations data/dbbackup/$timestamp/migrations/program
+mv people/migrations data/dbbackup/$timestamp/migrations/people
 
 bash migrate.sh
 python manage.py create_super_user

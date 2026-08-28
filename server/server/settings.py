@@ -192,6 +192,7 @@ INSTALLED_APPS = [
     'core',
     'product',
     'program',
+    'people',
 
     # Keeping django cleanup at the end
     'django_cleanup.apps.CleanupConfig',
@@ -299,7 +300,7 @@ FILE_UPLOAD_TEMP_DIR = config['FILE_UPLOAD_TEMP_DIR'] if 'FILE_UPLOAD_TEMP_DIR' 
 SESSION_FILE_PATH = config['SESSION_FILE_PATH'] if 'SESSION_FILE_PATH' in config else str(
     Path(DATA_DIR, '_session'))
 FILE_UPLOAD_DIRECTORY_PERMISSIONS = config[
-    'FILE_UPLOAD_DIRECTORY_PERMISSIONS'] if 'FILE_UPLOAD_DIRECTORY_PERMISSIONS' in config else 0o644
+    'FILE_UPLOAD_DIRECTORY_PERMISSIONS'] if 'FILE_UPLOAD_DIRECTORY_PERMISSIONS' in config else 0o755
 FILE_UPLOAD_PERMISSIONS = config['FILE_UPLOAD_PERMISSIONS'] if 'FILE_UPLOAD_PERMISSIONS' in config else 0o644
 
 # Create temp directories
@@ -316,9 +317,9 @@ STATICFILES_DIRS = [static_file_dir for static_file_dir in static_file_dirs if o
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_BASE_NAME = 'data'
+MEDIA_BASE_NAME = 'data/media'
 MEDIA_ROOT = str(Path(str(DATA_MOUNT_DIR), MEDIA_BASE_NAME))
-# os.makedirs(MEDIA_ROOT, exist_ok=True)
+os.makedirs(MEDIA_ROOT, exist_ok=True)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

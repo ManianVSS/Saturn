@@ -67,6 +67,8 @@ class ProgramIncrementSerializer(ServerModelSerializer):
 
 
 class EpicSerializer(ServerModelSerializer):
+    # Don't need declare serializer for relationss as ServerModelSerializer takes care of that
+    # Commented: attachments = ProgramAttachmentSerializer(many=True, read_only=True)
     class Meta:
         model = Epic
         fields = org_model_base_fields + ['pi', 'name', 'status', 'summary', 'description', 'weight', 'attachments', ]
@@ -84,11 +86,10 @@ class SprintSerializer(ServerModelSerializer):
         fields = org_model_base_fields + ['pi', 'name', 'start_date', 'end_date', ]
 
 
-class StorySerializer(ServerModelSerializer):
+class StorySerializer(ServerModelSerializer):    
     class Meta:
         model = Story
-        fields = org_model_base_fields + ['sprint', 'feature', 'name', 'status', 'summary', 'description', 'weight',
-                                           'attachments', 'rank', ]
+        fields = org_model_base_fields + ['sprint', 'feature', 'name', 'status', 'summary', 'description', 'weight', 'attachments', 'rank', ]
 
 
 
